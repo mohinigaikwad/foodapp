@@ -9,11 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function FoodCart() {
   const [activecart, setactivecart] = useState(false);
-   const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const cartitems = useSelector((state) => state.cart.cart);
-  console.log("caeritems",cartitems);
-  
+  console.log("caeritems", cartitems);
+
   const dispatch = useDispatch();
 
   const totalprice = cartitems.reduce(
@@ -27,7 +27,7 @@ export default function FoodCart() {
   return (
     <>
       <div
-        className={`fixed  right-0 top-0 w-full  lg:w-[20vw] h-full p-5 bg-white  ${
+        className={`fixed  right-0 top-0 w-full  lg:w-[20vw]   h-full p-5 bg-white  ${
           activecart ? "translate-x-0" : "translate-x-full"
         } transition-all duration-500 z-50`}
       >
@@ -60,10 +60,14 @@ export default function FoodCart() {
               })
             ) : (
               <>
-              <h2 className="text-center text xl font-bold text-gray-400">
-                "your cart is empty"
-              </h2>
-              <img className="h-50 w-80  mx-auto  "  src="	https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0" alt="" />
+                <h2 className="text-center text xl font-bold text-gray-400">
+                  "your cart is empty"
+                </h2>
+                <img
+                  className="h-50 w-80  mx-auto  "
+                  src="	https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0"
+                  alt=""
+                />
               </>
             )}
 
@@ -74,19 +78,17 @@ export default function FoodCart() {
 
           <div className="card-footer absolute bottom-0 ">
             <h3 className=" font-semibold text-gray-700">
-              Items:{cartitems.reduce((total,item)=>total + item.qty, 0)}
+              Items:{cartitems.reduce((total, item) => total + item.qty, 0)}
             </h3>
             <h3 className="  font-semibold text-gray-700">
               Totoal Amount :${totalprice}{" "}
             </h3>
             <hr className="w-[90vw] lg:w-[18vw] my-4" />
             <button
-              onClick={() =>
-                { 
-                  // dispatch(clearcart());
-                   navigate("/success")
-                  }
-                }
+              onClick={() => {
+                // dispatch(clearcart());
+                navigate("/success");
+              }}
               className="bg-amber-500 rounded-lg font-bold w-[80vw] lg:w-[18vw] py-6 px-4 mb-5"
             >
               Checout
@@ -96,7 +98,10 @@ export default function FoodCart() {
       </div>
       <FaCartShopping
         onClick={() => setactivecart(!activecart)}
-        className="shadow-md rounded-full bg-amber-500 text-5xl p-3 fixed top-9 right-30"
+        className={`shadow-md rounded-full bg-amber-500 text-5xl p-3  fixed top-9 right-3 sm:fixed top-9 right-8
+         
+      
+          `}
       />
     </>
   );
